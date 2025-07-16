@@ -111,17 +111,24 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         #menu-page video {
-            max-width: 40%; /* Réduit pour prendre moins de place */
+            max-width: 45%; /* Réduit pour s'adapter côte à côte */
             border-radius: 10px;
             cursor: pointer;
             margin: 10px 0;
         }
-        #video-page video {
+        .video-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        #video-page video, #video-mousseux-page video, #video-frozen-page video {
             max-width: 100%;
             border-radius: 10px;
             margin: 10px 0;
         }
-        #video-page button {
+        #video-page button, #video-mousseux-page button, #video-frozen-page button {
             padding: 10px 20px;
             font-size: 16px;
             font-weight: 600;
@@ -136,13 +143,29 @@
             margin-top: 10px;
             transition: all 0.3s ease;
         }
-        #video-page button:hover {
+        #video-page button:hover, #video-mousseux-page button:hover, #video-frozen-page button:hover {
             background: linear-gradient(45deg, #ff8c00, #ff69b4);
             transform: translateY(-1px);
         }
-        #video-page button:active {
+        #video-page button:active, #video-mousseux-page button:active, #video-frozen-page button:active {
             transform: scale(0.95);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        #info-page .content-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 20px;
+        }
+        #info-page .content-left,
+        #info-page .content-right {
+            flex: 1;
+            text-align: left;
+        }
+        #info-page .content-left p,
+        #info-page .content-right p {
+            font-size: 16px;
+            margin: 8px 0;
         }
         /* Responsive */
         @media (max-width: 600px) {
@@ -154,9 +177,13 @@
                 font-size: 12px;
             }
             #menu-page video {
-                max-width: 60%; /* Légèrement plus grand sur mobile */
+                max-width: 60%; /* Retour à la taille mobile */
             }
-            #video-page video {
+            .video-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            #video-page video, #video-mousseux-page video, #video-frozen-page video {
                 max-width: 100%;
             }
             .page p {
@@ -164,6 +191,9 @@
             }
             .page img {
                 max-width: 100%;
+            }
+            #info-page .content-container {
+                flex-direction: column;
             }
         }
     </style>
@@ -177,21 +207,59 @@
     </div>
     <div id="menu-page" class="page">
         <p>Notre Menu</p>
-        <video controls muted onclick="showPage('video-page')">
-            <source src="baida.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas la vidéo.
-        </video>
-        <p>Blanche❄️</p>
+        <div class="video-container">
+            <div>
+                <video controls muted onclick="showPage('video-page')">
+                    <source src="baida.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
+                <p>Blanche ❄️</p>
+            </div>
+            <div>
+                <video controls muted onclick="showPage('video-mousseux-page')">
+                    <source src="mousse.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
+                <p>Mousseux 🧽</p>
+            </div>
+        </div>
+        <div>
+            <video controls muted onclick="showPage('video-frozen-page')">
+                <source src="frozen.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+            <p>Filré x3🍫</p>
+        </div>
     </div>
     <div id="info-page" class="page">
-        <p>🔒 Accès réservé aux clients – Sécurité maximale 🔒</p>
-        <p>🚫 Pour garantir la sécurité du canal et éviter les bannissements ou les comptes douteux, chaque nouveau membre doit obligatoirement :</p>
-        <p>1. Envoyer une photo de sa carte d’identité (recto uniquement, avec nom + photo visibles)</p>
-        <p>2. Envoyer une photo de son visage (selfie), simple et claire</p>
-        <p>✅ Ces informations sont strictement confidentielles et ne seront jamais partagées.</p>
-        <p>📁 Elles servent uniquement à confirmer l’identité du client et protéger le canal des risques externes (signalement, fake, arnaque, etc.)</p>
-        <p>📌 Aucun accès au canal sans vérification</p>
-        <p>📆 Une fois accepté, tu as accès à tous les produits, tarifs, conditions et possibilités de livraison.</p>
+        <div class="contentContainer">
+            <div class="content-left">
+                <p>🟥 Bienvenue sur Street Plug76 🟥</p>
+                <p>Canal de confiance pour des produits de qualité livrés rapidement et en toute discrétion.</p>
+                <p>📌 Ce qu’on propose :</p>
+                <p>✔️ Produits authentiques & sélectionnés</p>
+                <p>✔️ Qualité garantie</p>
+                <p>✔️ Prix abordables</p>
+                <p>✔️ Livraison rapide en main propre ou point de rendez-vous</p>
+                <p>✔️ Réponse rapide 7j/7</p>
+                <p>✔️ Aucune expédition postale — uniquement livraison directe</p>
+                <p>📍 Livraison disponible sur Rouen/Seine-maritime</p>
+                <p>(Possibilité de déplacement selon le montant de la commande)</p>
+                <p>📲 Pour commander ou poser une question, contacte-nous en message privé</p>
+                <p>🛑 Client sérieux uniquement – pas de blabla inutile.</p>
+                <p>✅ Satisfaction garantie – vous revenez parce que c’est carré.</p>
+            </div>
+            <div class="content-right">
+                <p>🔒 Accès réservé aux clients – Sécurité maximale 🔒</p>
+                <p>🚫 Pour garantir la sécurité du canal et éviter les bannissements ou les comptes douteux, chaque nouveau membre doit obligatoirement :</p>
+                <p>1. Envoyer une photo de sa carte d’identité (recto uniquement, the name and photo visible)</p>
+                <p>2. Envoyer une photo de son visage (selfie), simple et claire</p>
+                <p>✅ Ascending="true">✅ Ces informations sont strictement confidentielles et ne seront jamais partagées.</p>
+                <p>📁 Elles servent uniquement à confirmer l’identité du client et protéger le canal des risques externes (signalement, fake, arnaque, etc.)</p>
+                <p>📌 Aucun accès au canal sans vérification</p>
+                <p>📆 Une fois accepté, tu as accès à tous les produits, tarifs, conditions et possibilités de livraison.</p>
+            </div>
+        </div>
     </div>
     <div id="video-page" class="page">
         <video controls autoplay muted>
@@ -204,6 +272,38 @@
         <p>5g=250€</p>
         <p>10g=450€</p>
         <p>📍 Livraison main propre / point fixe</p>
+        <p>Contact telegram @StreetPlug76</p>
+        <button onclick="showPage('menu-page')">🔙 Retour</button>
+    </div>
+    <div id="video-mousseux-page" class="page">
+        <video controls autoplay muted>
+            <source src="mousse.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <p>Mousseux 🧽</p>
+        <p>Prix💰:</p>
+        <p>10G=50€</p>
+        <p>25G=120€</p>
+        <p>50G=190€</p>
+        <p>100G=350€</p>
+        <p>Contact telegram @StreetPlug76</p>
+        <button onclick="showPage('menu-page')">🔙 Retour</button>
+    </div>
+    <div id="video-frozen-page" class="page">
+        <video controls autoplay muted>
+            <source src="frozen.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <p>Filré x3🍫</p>
+        <p>Olivette🫒</p>
+        <p>/Strains🍓🥝🍑</p>
+        <p>- strawberry banana🍓🍌</p>
+        <p>- Berry runtz🍻</p>
+        <p>Prix💰:</p>
+        <p>5G=60€</p>
+        <p>10G=100€</p>
+        <p>25G=230€</p>
+        <p>50G=350€</p>
         <p>Contact telegram @StreetPlug76</p>
         <button onclick="showPage('menu-page')">🔙 Retour</button>
     </div>
