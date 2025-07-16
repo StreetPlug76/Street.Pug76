@@ -115,44 +115,31 @@
             cursor: pointer;
             margin: 10px 0;
         }
-        #video-fullscreen {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(0, 0, 0, 0.8); /* Fond semi-transparent */
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            max-width: 90%;
-            z-index: 1000;
-            animation: fadeIn 0.3s ease-in;
-        }
-        #video-fullscreen video {
+        #video-page video {
             max-width: 100%;
             border-radius: 10px;
+            margin: 10px 0;
         }
-        #video-fullscreen p {
-            color: #ffffff;
+        #video-page button {
+            padding: 10px 20px;
             font-size: 16px;
-            margin: 5px 0;
-            line-height: 1.5;
-        }
-        #video-fullscreen button {
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            border-radius: 15px;
+            background: linear-gradient(45deg, #ff69b4, #ff8c00);
+            color: #ffffff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             margin-top: 10px;
+            transition: all 0.3s ease;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        #video-page button:hover {
+            background: linear-gradient(45deg, #ff8c00, #ff69b4);
+            transform: translateY(-1px);
         }
-        #video-fullscreen.close {
-            animation: fadeOut 0.3s ease-out;
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
+        #video-page button:active {
+            transform: scale(0.95);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         /* Responsive */
         @media (max-width: 600px) {
@@ -166,10 +153,10 @@
             #menu-page video {
                 max-width: 70%; /* Légèrement plus grand sur mobile */
             }
-            #video-fullscreen video {
+            #video-page video {
                 max-width: 100%;
             }
-            .page p, #video-fullscreen p {
+            .page p {
                 font-size: 14px;
             }
         }
@@ -183,7 +170,7 @@
     </div>
     <div id="menu-page" class="page">
         <p>Notre Menu</p>
-        <video controls muted onclick="showFullscreenVideo()">
+        <video controls muted onclick="showPage('video-page')">
             <source src="baida.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la vidéo.
         </video>
@@ -198,7 +185,7 @@
         <p>📌 Aucun accès au canal sans vérification</p>
         <p>📆 Une fois accepté, tu as accès à tous les produits, tarifs, conditions et possibilités de livraison.</p>
     </div>
-    <div id="video-fullscreen">
+    <div id="video-page" class="page">
         <video controls autoplay muted>
             <source src="baida.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la vidéo.
@@ -209,7 +196,7 @@
         <p>5g=250€</p>
         <p>10g=450€</p>
         <p>📍 Livraison main propre / point fixe</p>
-        <button onclick="closeFullscreenVideo()">🔙 Fermer</button>
+        <button onclick="showPage('menu-page')">🔙 Retour</button>
     </div>
     <div class="nav-bar">
         <button onclick="showPage('home-page')">Accueil</button>
@@ -225,21 +212,6 @@
                 page.classList.remove('active');
             });
             document.getElementById(pageId).classList.add('active');
-            document.getElementById('video-fullscreen').style.display = 'none'; // Ferme la vidéo plein écran si ouverte
-        }
-
-        function showFullscreenVideo() {
-            const fullscreenDiv = document.getElementById('video-fullscreen');
-            fullscreenDiv.style.display = 'block';
-        }
-
-        function closeFullscreenVideo() {
-            const fullscreenDiv = document.getElementById('video-fullscreen');
-            fullscreenDiv.classList.add('close');
-            setTimeout(() => {
-                fullscreenDiv.style.display = 'none';
-                fullscreenDiv.classList.remove('close');
-            }, 300);
         }
     </script>
 </body>
