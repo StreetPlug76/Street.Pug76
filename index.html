@@ -52,7 +52,7 @@
         .page p {
             margin: 8px 0;
             font-size: 18px;
-            line-height: 1.4;
+            line-height: 1.5;
             color: #333;
             text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             transition: transform 0.2s ease;
@@ -159,10 +159,13 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         #video-page video, #video-mousseux-page video, #video-frozen-page video {
-            max-width: 80%; /* Réduire la taille pour voir les descriptions */
+            max-width: 60%; /* Plus petit pour mettre en avant les descriptions */
             border-radius: 10px;
             margin: 10px auto;
             display: block;
+        }
+        #video-page p, #video-mousseux-page p, #video-frozen-page p {
+            padding-bottom: 10px; /* Espacement pour séparer du bouton Retour */
         }
         #video-page button, #video-mousseux-page button, #video-frozen-page button {
             padding: 10px 20px;
@@ -229,10 +232,11 @@
                 padding: 8px;
             }
             #video-page video, #video-mousseux-page video, #video-frozen-page video {
-                max-width: 90%; /* Légèrement plus grand sur mobile, mais pas trop */
+                max-width: 70%; /* Plus petit sur mobile */
             }
             #video-page p, #video-mousseux-page p, #video-frozen-page p {
-                font-size: 14px; /* Réduire la taille pour plus de visibilité */
+                font-size: 16px; /* Plus lisible sur mobile */
+                padding-bottom: 10px;
             }
             .page img {
                 max-width: 100%;
@@ -256,7 +260,7 @@
                 padding: 6px;
             }
             #video-page video, #video-mousseux-page video, #video-frozen-page video {
-                max-width: 85%; /* Ajustement pour écrans très étroits */
+                max-width: 65%; /* Encore plus petit pour écrans étroits */
             }
         }
     </style>
