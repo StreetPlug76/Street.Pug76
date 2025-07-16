@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Street.Plug76</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh; /* Permet au contenu de dépasser la hauteur de l'écran */
+            margin: 0;
+            background-color: #ffe4e1; /* Rose clair */
+            overflow: auto; /* Active le défilement vertical */
+            position: relative;
+            padding-bottom: 60px; /* Espace pour la barre de navigation en bas */
+        }
+        body::before {
+            content: '✨';
+            position: absolute;
+            font-size: 2.5em;
+            top: 10%;
+            left: 15%;
+            color: #ff69b4;
+            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
+            animation: float 5s infinite ease-in-out;
+            z-index: -1;
+        }
+        body::after {
+            content: '🔥';
+            position: absolute;
+            font-size: 2em;
+            top: 70%;
+            left: 80%;
+            color: #ff4500;
+            text-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+            animation: float 6s infinite ease-in-out;
+            z-index: -1;
+            pointer-events: none;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        h1 {
+            color: #000000; /* Noir */
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3em;
+            font-weight: 900;
+            margin: 20px 0;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+            letter-spacing: 2px;
+            animation: fadeInTitle 1s ease-in;
+        }
+        @keyframes fadeInTitle {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .page {
+            display: none;
+            text-align: center;
+            max-width: 90%;
+            padding: 20px;
+            background: linear-gradient(135deg, #ffffff, #ffe4e1);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        .page.active {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .page p {
+            margin: 5px 0;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        .nav-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #ff69b4, #ff8c00); /* Dégradé rose vif à orange */
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+        .nav-bar button {
+            padding: 8px 15px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            border-radius: 15px;
+            background: #ffffff; /* Fond blanc pour contraste */
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+        .nav-bar button:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+        }
+        .nav-bar button:active {
+            transform: scale(0.95);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        #menu-page video {
+            max-width: 50%; /* Petite taille pour la vidéo */
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px 0;
+        }
+        #video-fullscreen {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0, 0, 0, 0.8); /* Fond semi-transparent */
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            max-width: 90%;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-in;
+        }
+        #video-fullscreen video {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+        #video-fullscreen p {
+            color: #ffffff;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        #video-fullscreen button {
+            margin-top: 10px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        #video-fullscreen.close {
+            animation: fadeOut 0.3s ease-out;
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+            .nav-bar button {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            #menu-page video {
+                max-width: 70%; /* Légèrement plus grand sur mobile */
+            }
+            #video-fullscreen video {
+                max-width: 100%;
+            }
+            .page p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Street.Plug76</h1>
+    <div id="home-page" class="page active">
+        <p>Bienvenue sur Street.Plug76 !</p>
+        <p>Explorez nos services et découvrez ce que nous offrons.</p>
+    </div>
+    <div id="menu-page" class="page">
+        <p>Notre Menu</p>
+        <video controls muted onclick="showFullscreenVideo()">
+            <source src="baida.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+    </div>
+    <div id="info-page" class="page">
+        <p>🔒 Accès réservé aux clients – Sécurité maximale 🔒</p>
+        <p>🚫 Pour garantir la sécurité du canal et éviter les bannissements ou les comptes douteux, chaque nouveau membre doit obligatoirement :</p>
+        <p>1. Envoyer une photo de sa carte d’identité (recto uniquement, avec nom + photo visibles)</p>
+        <p>2. Envoyer une photo de son visage (selfie), simple et claire</p>
+        <p>✅ Ces informations sont strictement confidentielles et ne seront jamais partagées.</p>
+        <p>📁 Elles servent uniquement à confirmer l’identité du client et protéger le canal des risques externes (signalement, fake, arnaque, etc.)</p>
+        <p>📌 Aucun accès au canal sans vérification</p>
+        <p>📆 Une fois accepté, tu as accès à tous les produits, tarifs, conditions et possibilités de livraison.</p>
+    </div>
+    <div id="video-fullscreen">
+        <video controls autoplay muted>
+            <source src="baida.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la vidéo.
+        </video>
+        <p>Vidéo Baida - Découvrez notre contenu exclusif !</p>
+        <button onclick="closeFullscreenVideo()">🔙 Fermer</button>
+    </div>
+    <div class="nav-bar">
+        <button onclick="showPage('home-page')">Accueil</button>
+        <button onclick="showPage('menu-page')">Menu</button>
+        <button onclick="showPage('info-page')">Information</button>
+    </div>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        window.Telegram.WebApp.ready();
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            document.getElementById('video-fullscreen').style.display = 'none'; // Ferme la vidéo plein écran si ouverte
+        }
+
+        function showFullscreenVideo() {
+            const fullscreenDiv = document.getElementById('video-fullscreen');
+            fullscreenDiv.style.display = 'block';
+        }
+
+        function closeFullscreenVideo() {
+            const fullscreenDiv = document.getElementById('video-fullscreen');
+            fullscreenDiv.classList.add('close');
+            setTimeout(() => {
+                fullscreenDiv.style.display = 'none';
+                fullscreenDiv.classList.remove('close');
+            }, 300);
+        }
+    </script>
+</body>
+</html>
