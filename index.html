@@ -58,14 +58,14 @@
             transition: transform 0.2s ease;
         }
         .page p:hover {
-            transform: scale(1.02); /* Léger grossissement au survol */
+            transform: scale(1.02);
         }
-        #home-page p {
-            font-weight: 700; /* Plus audacieux pour l'accueil */
-            background: linear-gradient(45deg, #ff69b4, #ff8c00); /* Dégradé rose-orange */
+        #home-page p, #menu-page p {
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff69b4, #ff8c00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: none; /* Supprime l'ombre pour le dégradé */
+            text-shadow: none;
         }
         .page p::before, .page p::after {
             color: #ff69b4; /* Rose vif pour emojis */
@@ -111,7 +111,7 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         #menu-page video {
-            max-width: 50%;
+            max-width: 40%; /* Réduit pour prendre moins de place */
             border-radius: 10px;
             cursor: pointer;
             margin: 10px 0;
@@ -154,7 +154,7 @@
                 font-size: 12px;
             }
             #menu-page video {
-                max-width: 70%;
+                max-width: 60%; /* Légèrement plus grand sur mobile */
             }
             #video-page video {
                 max-width: 100%;
@@ -181,6 +181,7 @@
             <source src="baida.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la vidéo.
         </video>
+        <p>Blanche❄️</p>
     </div>
     <div id="info-page" class="page">
         <p>🔒 Accès réservé aux clients – Sécurité maximale 🔒</p>
@@ -203,6 +204,7 @@
         <p>5g=250€</p>
         <p>10g=450€</p>
         <p>📍 Livraison main propre / point fixe</p>
+        <p>Contact telegram @StreetPlug76</p>
         <button onclick="showPage('menu-page')">🔙 Retour</button>
     </div>
     <div class="nav-bar">
