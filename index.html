@@ -110,22 +110,53 @@
             transform: scale(0.95);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
-        #menu-page video {
-            max-width: 40%; /* Réduit pour être plus petit */
-            border-radius: 10px;
-            cursor: pointer;
-            margin: 10px 0;
-        }
-        .video-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+        .menu-section {
             width: 100%;
-            flex-wrap: wrap;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #ff69b4;
+            border-radius: 10px;
+            box-sizing: border-box;
         }
-        .video-container .placeholder {
-            width: 40%;
-            max-width: 40%;
+        .menu-section p {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .button-container {
+            display: grid;
+            gap: 8px;
+            width: 100%;
+        }
+        .button-container.doux {
+            grid-template-columns: repeat(2, 1fr); /* Deux boutons pour Menu Douce */
+        }
+        .button-container.festif {
+            grid-template-columns: 1fr; /* Un bouton pour Menu Festif */
+        }
+        .button-container button {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: 'Roboto', sans-serif;
+            cursor: pointer;
+            border: none;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #333;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+        .button-container button:hover {
+            background: #f0f0f0;
+            transform: translateY(-1px);
+        }
+        .button-container button:active {
+            transform: scale(0.95);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         #video-page video, #video-mousseux-page video, #video-frozen-page video {
             max-width: 100%;
@@ -180,18 +211,21 @@
                 padding: 6px 12px;
                 font-size: 12px;
             }
-            #menu-page video {
-                max-width: 40%; /* Plus petit pour deux vidéos par ligne */
+            .menu-section {
+                padding: 8px;
             }
-            .video-container {
-                display: flex;
-                justify-content: center;
-                gap: 20px;
-                width: 100%;
+            .menu-section p {
+                font-size: 18px;
             }
-            .video-container .placeholder {
-                width: 40%;
-                max-width: 40%;
+            .button-container.doux {
+                grid-template-columns: repeat(2, 1fr); /* Deux boutons sur mobile */
+            }
+            .button-container.festif {
+                grid-template-columns: 1fr;
+            }
+            .button-container button {
+                font-size: 14px;
+                padding: 8px;
             }
             #video-page video, #video-mousseux-page video, #video-frozen-page video {
                 max-width: 100%;
@@ -206,6 +240,21 @@
                 flex-direction: column;
             }
         }
+        @media (max-width: 400px) {
+            .menu-section {
+                padding: 6px;
+            }
+            .menu-section p {
+                font-size: 16px;
+            }
+            .button-container {
+                gap: 6px;
+            }
+            .button-container button {
+                font-size: 12px;
+                padding: 6px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -217,31 +266,18 @@
     </div>
     <div id="menu-page" class="page">
         <p>Notre Menu</p>
-        <div class="video-container">
-            <div>
-                <video controls muted onclick="showPage('video-page')">
-                    <source src="baida.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la vidéo.
-                </video>
-                <p>Blanche ❄️</p>
-            </div>
-            <div>
-                <video controls muted onclick="showPage('video-mousseux-page')">
-                    <source src="mousse.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la vidéo.
-                </video>
-                <p>Mousseux 🧽</p>
+        <div class="menu-section">
+            <p>Menu Douce 🧸</p>
+            <div class="button-container doux">
+                <button onclick="showPage('video-frozen-page')">Filré x3🍫</button>
+                <button onclick="showPage('video-mousseux-page')">Mousseux 🧽</button>
             </div>
         </div>
-        <div class="video-container">
-            <div>
-                <video controls muted onclick="showPage('video-frozen-page')">
-                    <source src="frozen.mp4" type="video/mp4">
-                    Votre navigateur ne supporte pas la vidéo.
-                </video>
-                <p>Filré x3🍫</p>
+        <div class="menu-section">
+            <p>Menu Festif 🍬</p>
+            <div class="button-container festif">
+                <button onclick="showPage('video-page')">Blanche ❄️</button>
             </div>
-            <div class="placeholder"></div>
         </div>
     </div>
     <div id="info-page" class="page">
@@ -265,7 +301,7 @@
             <div class="content-right">
                 <p>🔒 Accès réservé aux clients – Sécurité maximale 🔒</p>
                 <p>🚫 Pour garantir la sécurité du canal et éviter les bannissements ou les comptes douteux, chaque nouveau membre doit obligatoirement :</p>
-                <p>1. Envoyer une photo de sa carte d’identité (recto uniquement, the name and photo visible)</p>
+                <p>1. Envoyer une photo de sa carte d’identité (recto uniquement, nom et photo visibles)</p>
                 <p>2. Envoyer une photo de son visage (selfie), simple et claire</p>
                 <p>✅ Ces informations sont strictement confidentielles et ne seront jamais partagées.</p>
                 <p>📁 Elles servent uniquement à confirmer l’identité du client et protéger le canal des risques externes (signalement, fake, arnaque, etc.)</p>
