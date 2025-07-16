@@ -123,6 +123,10 @@
             width: 100%;
             flex-wrap: wrap;
         }
+        .video-container .placeholder {
+            width: 45%;
+            max-width: 45%;
+        }
         #video-page video, #video-mousseux-page video, #video-frozen-page video {
             max-width: 100%;
             border-radius: 10px;
@@ -177,11 +181,17 @@
                 font-size: 12px;
             }
             #menu-page video {
-                max-width: 60%; /* Retour à la taille mobile */
+                max-width: 45%; /* Deux vidéos par ligne */
             }
             .video-container {
-                flex-direction: column;
-                align-items: center;
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                width: 100%;
+            }
+            .video-container .placeholder {
+                width: 45%;
+                max-width: 45%;
             }
             #video-page video, #video-mousseux-page video, #video-frozen-page video {
                 max-width: 100%;
@@ -223,16 +233,19 @@
                 <p>Mousseux 🧽</p>
             </div>
         </div>
-        <div>
-            <video controls muted onclick="showPage('video-frozen-page')">
-                <source src="frozen.mp4" type="video/mp4">
-                Votre navigateur ne supporte pas la vidéo.
-            </video>
-            <p>Filré x3🍫</p>
+        <div class="video-container">
+            <div>
+                <video controls muted onclick="showPage('video-frozen-page')">
+                    <source src="frozen.mp4" type="video/mp4">
+                    Votre navigateur ne supporte pas la vidéo.
+                </video>
+                <p>Filré x3🍫</p>
+            </div>
+            <div class="placeholder"></div>
         </div>
     </div>
     <div id="info-page" class="page">
-        <div class="contentContainer">
+        <div class="content-container">
             <div class="content-left">
                 <p>🟥 Bienvenue sur Street Plug76 🟥</p>
                 <p>Canal de confiance pour des produits de qualité livrés rapidement et en toute discrétion.</p>
@@ -254,7 +267,7 @@
                 <p>🚫 Pour garantir la sécurité du canal et éviter les bannissements ou les comptes douteux, chaque nouveau membre doit obligatoirement :</p>
                 <p>1. Envoyer une photo de sa carte d’identité (recto uniquement, the name and photo visible)</p>
                 <p>2. Envoyer une photo de son visage (selfie), simple et claire</p>
-                <p>✅ Ascending="true">✅ Ces informations sont strictement confidentielles et ne seront jamais partagées.</p>
+                <p>✅ Ces informations sont strictement confidentielles et ne seront jamais partagées.</p>
                 <p>📁 Elles servent uniquement à confirmer l’identité du client et protéger le canal des risques externes (signalement, fake, arnaque, etc.)</p>
                 <p>📌 Aucun accès au canal sans vérification</p>
                 <p>📆 Une fois accepté, tu as accès à tous les produits, tarifs, conditions et possibilités de livraison.</p>
@@ -283,11 +296,10 @@
         <p>Mousseux 🧽</p>
         <p>Prix💰:</p>
         <p>10G=50€</p>
-        <p>25G=120€</p>
-        <p>50G=190€</p>
-        <p>100G=350€</p>
+       over to 230€
+        <p>50G=350€</p>
         <p>Contact telegram @StreetPlug76</p>
-        <button onclick="showPage('menu-page')">🔙 Retour</button>
+        <button onclick="showPage('menu-page')">� backs Retour</button>
     </div>
     <div id="video-frozen-page" class="page">
         <video controls autoplay muted>
