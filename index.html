@@ -71,7 +71,7 @@
             color: #ff69b4; /* Rose vif pour emojis */
         }
         .page img {
-            max-width: 90%;
+            max-width: 70%; /* Réduction de la taille de l'image */
             border-radius: 10px;
             margin: 10px 0;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
@@ -159,7 +159,7 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         #video-page video, #video-mousseux-page video, #video-frozen-page video {
-            max-width: 60%; /* Plus petit pour mettre en avant les descriptions */
+            max-width: 50%; /* Réduction de la taille des vidéos */
             border-radius: 10px;
             margin: 10px auto;
             display: block;
@@ -235,14 +235,14 @@
                 padding: 8px;
             }
             #video-page video, #video-mousseux-page video, #video-frozen-page video {
-                max-width: 70%; /* Plus petit sur mobile */
+                max-width: 60%; /* Ajusté pour mobile */
             }
             #video-page p, #video-mousseux-page p, #video-frozen-page p {
                 font-size: 12px; /* Réduction confirmée pour mobile */
                 padding-bottom: 10px;
             }
             .page img {
-                max-width: 100%;
+                max-width: 70%; /* Réduction confirmée pour mobile */
             }
             #info-page .content-container {
                 flex-direction: column;
@@ -263,7 +263,10 @@
                 padding: 6px;
             }
             #video-page video, #video-mousseux-page video, #video-frozen-page video {
-                max-width: 65%; /* Encore plus petit pour écrans étroits */
+                max-width: 55%; /* Encore plus petit pour écrans étroits */
+            }
+            .page img {
+                max-width: 65%; /* Réduction pour petits écrans */
             }
         }
     </style>
