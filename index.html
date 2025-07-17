@@ -159,16 +159,16 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
         #video-page video, #video-mousseux-page video, #video-frozen-page video {
-            max-width: 50%; /* Réduction de la taille des vidéos */
+            max-width: 40%; /* Réduction de la taille des vidéos */
             border-radius: 10px;
             margin: 10px auto;
             display: block;
         }
         #video-page p, #video-mousseux-page p, #video-frozen-page p {
-            margin: 5px 0;
+            margin: 2px 0; /* Rapprochement du texte */
             font-size: 12px;
             line-height: 1.2;
-            padding-bottom: 10px; /* Espacement pour séparer du bouton Retour */
+            padding-bottom: 5px; /* Rapprochement du bouton */
         }
         #video-page button, #video-mousseux-page button, #video-frozen-page button {
             padding: 10px 20px;
@@ -182,7 +182,7 @@
             color: #ffffff;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            margin-top: 10px;
+            margin-top: 5px;
             transition: all 0.3s ease;
         }
         #video-page button:hover, #video-mousseux-page button:hover, #video-frozen-page button:hover {
@@ -235,11 +235,11 @@
                 padding: 8px;
             }
             #video-page video, #video-mousseux-page video, #video-frozen-page video {
-                max-width: 60%; /* Ajusté pour mobile */
+                max-width: 50%; /* Ajusté pour mobile */
             }
             #video-page p, #video-mousseux-page p, #video-frozen-page p {
                 font-size: 12px; /* Réduction confirmée pour mobile */
-                padding-bottom: 10px;
+                padding-bottom: 5px;
             }
             .page img {
                 max-width: 70%; /* Réduction confirmée pour mobile */
@@ -263,7 +263,7 @@
                 padding: 6px;
             }
             #video-page video, #video-mousseux-page video, #video-frozen-page video {
-                max-width: 55%; /* Encore plus petit pour écrans étroits */
+                max-width: 45%; /* Encore plus petit pour écrans étroits */
             }
             .page img {
                 max-width: 65%; /* Réduction pour petits écrans */
@@ -276,6 +276,9 @@
     <div id="home-page" class="page active">
         <p>🌟 Bienvenue chez Street.Plug76 ! 🌟</p>
         <img src="street.jpg" alt="Street Image">
+        <div class="button-container">
+            <button onclick="showPage('menu-page')">Menu</button>
+        </div>
         <p>❄️ Découvrez nos produits exclusifs et commandez dès maintenant ! 💰</p>
     </div>
     <div id="menu-page" class="page">
