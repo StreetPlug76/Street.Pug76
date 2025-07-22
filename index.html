@@ -42,6 +42,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             opacity: 0;
             transition: opacity 0.5s ease-in-out;
+            position: relative; /* Pour positionnement absolu du bouton */
         }
         .page.active {
             display: flex;
@@ -173,26 +174,29 @@
             line-height: 1.2;
             padding-bottom: 5px; /* Rapprochement du bouton */
         }
-        #video-page button, #video-mousseux-page button, #video-frozen-page button {
-            padding: 10px 20px;
-            font-size: 16px;
+        .back-button {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 8px 12px;
+            font-size: 18px;
             font-weight: 600;
             font-family: 'Roboto', sans-serif;
             cursor: pointer;
             border: none;
-            border-radius: 15px;
+            border-radius: 10px;
             background: linear-gradient(45deg, #ff69b4, #ff8c00);
             color: #ffffff;
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-            margin-top: 5px;
             transition: all 0.3s ease;
+            z-index: 10;
         }
-        #video-page button:hover, #video-mousseux-page button:hover, #video-frozen-page button:hover {
+        .back-button:hover {
             background: linear-gradient(45deg, #ff8c00, #ff69b4);
             transform: translateY(-1px);
         }
-        #video-page button:active, #video-mousseux-page button:active, #video-frozen-page button:active {
+        .back-button:active {
             transform: scale(0.95);
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
@@ -211,6 +215,12 @@
         #info-page .content-right p {
             font-size: 16px;
             margin: 8px 0;
+        }
+        .description-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            text-align: left;
         }
         /* Responsive */
         @media (max-width: 600px) {
@@ -250,6 +260,10 @@
             #info-page .content-container {
                 flex-direction: column;
             }
+            .back-button {
+                padding: 6px 10px;
+                font-size: 16px;
+            }
         }
         @media (max-width: 400px) {
             .menu-section {
@@ -271,6 +285,10 @@
             .page img {
                 max-width: 65%; /* Réduction pour petits écrans */
             }
+            .back-button {
+                padding: 5px 8px;
+                font-size: 14px;
+            }
         }
     </style>
 </head>
@@ -289,7 +307,7 @@
         <div class="menu-section">
             <p>Menu Douce 🧸</p>
             <div class="button-container doux">
-                <button onclick="showPage('video-frozen-page')">Filré x3🍫</button>
+                <button onclick="showPage('video-frozen-page')">Olivette🫒</button>
                 <button onclick="showPage('video-mousseux-page')">Mousseux 🧽</button>
             </div>
         </div>
@@ -331,6 +349,7 @@
         </div>
     </div>
     <div id="video-page" class="page">
+        <button class="back-button" onclick="showPage('menu-page')">←</button>
         <video controls autoplay muted>
             <source src="baida.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la vidéo.
@@ -342,9 +361,9 @@
         <p>10g=450€</p>
         <p>📍 Livraison main propre / point fixe</p>
         <p>Contact telegram @StreetPlug76</p>
-        <button onclick="showPage('menu-page')">🔙Retour</button>
     </div>
     <div id="video-mousseux-page" class="page">
+        <button class="back-button" onclick="showPage('menu-page')">←</button>
         <video controls autoplay muted>
             <source src="mousse.mp4" type="video/mp4">
             Votre navigateur ne supporte pas la vidéo.
@@ -356,25 +375,36 @@
         <p>50G=190€</p>
         <p>100G=350€</p>
         <p>Contact telegram @StreetPlug76</p>
-        <button onclick="showPage('menu-page')">🔙Retour</button>
     </div>
     <div id="video-frozen-page" class="page">
-        <video controls autoplay muted>
-            <source src="frozen.mp4" type="video/mp4">
-            Votre navigateur ne supporte pas la vidéo.
-        </video>
-        <p>Filré x3🍫</p>
-        <p>Olivette🫒</p>
-        <p>/Strains🍓🥝🍑</p>
-        <p>- strawberry banana🍓🍌</p>
-        <p>- Berry runtz🍻</p>
-        <p>Prix💰:</p>
-        <p>5G=60€</p>
-        <p>10G=100€</p>
-        <p>25G=230€</p>
-        <p>50G=350€</p>
-        <p>Contact telegram @StreetPlug76</p>
-        <button onclick="showPage('menu-page')">🔙Retour</button>
+        <button class="back-button" onclick="showPage('menu-page')">←</button>
+        <div style="display: flex; align-items: flex-start; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <video controls autoplay muted style="max-width: 40%;">
+                <source src="frozen.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+            <div class="description-container">
+                <div style="text-align: left;">
+                    <p>90U NO FARM</p>
+                    <p>5G=50€</p>
+                    <p>10G=90€</p>
+                    <p>20G=170€</p>
+                    <p>50G=330€</p>
+                </div>
+                <div style="text-align: left;">
+                    <p>Olivette🫒</p>
+                    <p>120U NO FARM /Strains🍓🥝🍑</p>
+                    <p>- strawberry banana🍓🍌</p>
+                    <p>- Berry runtz🍻</p>
+                    <p>Prix💰:</p>
+                    <p>5G=60€</p>
+                    <p>10G=100€</p>
+                    <p>25G=230€</p>
+                    <p>50G=350€</p>
+                    <p>Contact telegram @StreetPlug76</p>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="nav-bar">
         <button onclick="showPage('home-page')">Accueil</button>
